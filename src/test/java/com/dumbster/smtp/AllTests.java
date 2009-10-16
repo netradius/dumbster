@@ -1,7 +1,7 @@
 /*
  * Dumbster - a dummy SMTP server
  * Copyright 2004 Jason Paul Kitchen
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,19 +16,22 @@
  */
 package com.dumbster.smtp;
 
-import junit.framework.*;
+import junit.framework.Test;
+import junit.framework.TestSuite;
 
 public class AllTests {
-  public static Test suite() {
-    TestSuite suite = new TestSuite();
-    suite.addTestSuite(SimpleSmtpServerTest.class);
-    suite.addTestSuite(SmtpRequestTest.class);
-    suite.addTestSuite(BindProblemTest.class);
-    return suite;
-  }
 
-  public static void main(String args[]) {
-    junit.textui.TestRunner.run(suite());
-  }
+	public static final int SMTP_PORT = 1081;
+
+	public static Test suite() {
+		TestSuite suite = new TestSuite();
+		suite.addTestSuite(SimpleSmtpServerTest.class);
+		suite.addTestSuite(SmtpRequestTest.class);
+		suite.addTestSuite(BindProblemTest.class);
+		return suite;
+	}
+
+	public static void main(String args[]) {
+		junit.textui.TestRunner.run(suite());
+	}
 }
-

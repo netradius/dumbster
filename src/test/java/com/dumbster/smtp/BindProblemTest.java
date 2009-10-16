@@ -17,6 +17,7 @@
 
 package com.dumbster.smtp;
 
+import static com.dumbster.smtp.AllTests.SMTP_PORT;
 import junit.framework.TestCase;
 
 /**
@@ -24,42 +25,43 @@ import junit.framework.TestCase;
  */
 public class BindProblemTest extends TestCase {
 
-  private SimpleSmtpServer server;
+	private SimpleSmtpServer server;
 
-  /**
-   * @see junit.framework.TestCase#setUp()
-   */
-  protected void setUp() throws Exception {
-    super.setUp();
-    server = SimpleSmtpServer.start();
-  }
+	/**
+	 * @see junit.framework.TestCase#setUp()
+	 */
+	@Override
+	protected void setUp() throws Exception {
+		super.setUp();
+		server = SimpleSmtpServer.start(SMTP_PORT);
+	}
 
-  /**
-   * @see junit.framework.TestCase#tearDown()
-   */
-  protected void tearDown() throws Exception {
-    server.stop();
-    super.tearDown();
-  }
+	/**
+	 * @see junit.framework.TestCase#tearDown()
+	 */
+	@Override
+	protected void tearDown() throws Exception {
+		server.stop();
+		super.tearDown();
+	}
 
-  public void test1() {
-    assertTrue(true);
-  }
+	public void test1() {
+		assertTrue(true);
+	}
 
-  public void test2() {
-    assertTrue(true);
-  }
+	public void test2() {
+		assertTrue(true);
+	}
 
-  public void test3() {
-    assertTrue(true);
-  }
+	public void test3() {
+		assertTrue(true);
+	}
 
-  public void test4() {
-    assertTrue(true);
-  }
+	public void test4() {
+		assertTrue(true);
+	}
 
-  public void test5() {
-    assertTrue(true);
-  }
+	public void test5() {
+		assertTrue(true);
+	}
 }
-
