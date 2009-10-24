@@ -57,8 +57,7 @@ public class SmtpState {
 	 * Create a new SmtpState object. Private to ensure that only valid states
 	 * can be created.
 	 *
-	 * @param value
-	 *            one of the _BYTE values.
+	 * @param value one of the _BYTE values.
 	 */
 	private SmtpState(byte value) {
 		this.value = value;

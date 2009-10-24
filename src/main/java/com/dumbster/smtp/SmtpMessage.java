@@ -26,8 +26,10 @@ import java.util.Map;
  * Container for a complete SMTP message - headers and message body.
  */
 public class SmtpMessage {
+
 	/** Headers: Map of List of String hashed on header name. */
 	private final Map<String, List<String>> headers;
+
 	/** Message body. */
 	private final StringBuffer body;
 
@@ -73,8 +75,7 @@ public class SmtpMessage {
 	/**
 	 * Get the value(s) associated with the given header name.
 	 *
-	 * @param name
-	 *            header name
+	 * @param name header name
 	 * @return value(s) associated with the header name
 	 */
 	public String[] getHeaderValues(String name) {
@@ -89,8 +90,7 @@ public class SmtpMessage {
 	/**
 	 * Get the first values associated with a given header name.
 	 *
-	 * @param name
-	 *            header name
+	 * @param name header name
 	 * @return first value associated with the header name
 	 */
 	public String getHeaderValue(String name) {
@@ -115,10 +115,8 @@ public class SmtpMessage {
 	/**
 	 * Adds a header to the Map.
 	 *
-	 * @param name
-	 *            header name
-	 * @param value
-	 *            header value
+	 * @param name header name
+	 * @param value header value
 	 */
 	private void addHeader(String name, String value) {
 		List<String> valueList = headers.get(name);

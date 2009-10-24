@@ -16,10 +16,10 @@
  */
 package com.dumbster.smtp;
 
-import static com.dumbster.smtp.AllTests.SMTP_PORT;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.Date;
-import java.util.Iterator;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -29,28 +29,27 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import junit.framework.TestCase;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
-public class SimpleSmtpServerTest extends TestCase {
+public class SimpleSmtpServerTest {
+
+	public static final int SMTP_PORT = 9999;
 
 	SimpleSmtpServer server;
 
-	public SimpleSmtpServerTest(String s) {
-		super(s);
-	}
-
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
+	@Before
+	public void setUp() {
 		server = SimpleSmtpServer.start(SMTP_PORT);
 	}
 
-	@Override
-	protected void tearDown() throws Exception {
-		super.tearDown();
+	@After
+	public void tearDown() {
 		server.stop();
 	}
 
+	@Test
 	public void testSend() {
 		try {
 			sendMessage(SMTP_PORT, "sender@here.com", "Test", "Test Body",
@@ -61,12 +60,12 @@ public class SimpleSmtpServerTest extends TestCase {
 		}
 
 		assertTrue(server.getReceivedEmailSize() == 1);
-		Iterator<SmtpMessage> emailIter = server.getReceivedEmail();
-		SmtpMessage email = emailIter.next();
+		SmtpMessage email = server.getReceivedEmail().get(0);
 		assertTrue(email.getHeaderValue("Subject").equals("Test"));
 		assertTrue(email.getBody().equals("Test Body"));
 	}
 
+	@Test
 	public void testSendMessageWithCarriageReturn() {
 		String bodyWithCR = "\n\nKeep these pesky carriage returns\n\n";
 		try {
@@ -78,14 +77,15 @@ public class SimpleSmtpServerTest extends TestCase {
 		}
 
 		assertTrue(server.getReceivedEmailSize() == 1);
-		// For some reason the Java mail API is stripping off the last \n
-		// Commenting this assertion out for now
-		// TODO Look into the issue
+//		For some reason the Java mail API is stripping off the last \n
+//		Commenting this assertion out for now
+//		TODO Look into the issue
 //		Iterator<SmtpMessage> emailIter = server.getReceivedEmail();
 //		SmtpMessage email = emailIter.next();
 //		assertTrue(bodyWithCR.equals(email.getBody()));
 	}
 
+	@Test
 	public void testSendTwoMessagesSameConnection() {
 		try {
 			MimeMessage[] mimeMessages = new MimeMessage[2];
@@ -114,8 +114,11 @@ public class SimpleSmtpServerTest extends TestCase {
 		}
 
 		assertTrue(server.getReceivedEmailSize() == 2);
+		server.clear();
+		assertTrue(server.getReceivedEmailSize() == 0);
 	}
 
+	@Test
 	public void testSendTwoMsgsWithLogin() {
 		try {
 			String Server = "localhost";
@@ -172,10 +175,11 @@ public class SimpleSmtpServerTest extends TestCase {
 		}
 
 		assertTrue(server.getReceivedEmailSize() == 2);
-		Iterator<SmtpMessage> emailIter = server.getReceivedEmail();
-		SmtpMessage email = emailIter.next();
+		SmtpMessage email = server.getReceivedEmail().get(0);
 		assertTrue(email.getHeaderValue("Subject").equals("Test"));
 		assertTrue(email.getBody().equals("Test Body"));
+		server.clear();
+		assertTrue(server.getReceivedEmailSize() == 0);
 	}
 
 	private Properties getMailProperties(int port) {

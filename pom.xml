@@ -6,7 +6,7 @@
 	<groupId>dumbster</groupId>
 	<artifactId>nr-dumbster</artifactId>
 	<packaging>jar</packaging>
-	<version>1.6</version>
+	<version>1.7-SNAPSHOT</version>
 	<name>dumbster</name>
 	<url>http://www.netradius.om/oss/dumbster</url>
 	<description>NetRadius Dumbster Fork</description>
@@ -15,7 +15,7 @@
 	</scm>
 	<properties>
 		<javamail.version>1.4.1</javamail.version>
-		<junit.version>4.4</junit.version>
+		<junit.version>4.7</junit.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -42,48 +42,47 @@
 			</plugin>
 		</plugins>
 	</build>
-	<distributionManagement>
+	<repositories>
 		<repository>
-			<id>netradius-releases</id>
-			<name>NetRadius Release Repository</name>
-			<url>https://mirrors.netradius.com/nexus/content/repositories/releases</url>
+			<id>netradius-public</id>
+			<name>NetRadius Nexus Managed Public Repository</name>
+			<url>http://mirrors.netradius.com/nexus/content/groups/public</url>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>daily</updatePolicy>
+				<checksumPolicy>warn</checksumPolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
 		</repository>
-		<snapshotRepository>
-			<id>netradius-snapshots</id>
-			<name>NetRadius Snapshots Repository</name>
-			<url>https://mirrors.netradius.com/nexus/content/repositories/snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
-	<profiles>
-		<profile>
-			<id>com.netradius.web</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<repositories>
-				<repository>
-					<id>com.netradius.archiva</id>
-					<url>http://mirrors.netradius.com/archiva/repository/internal</url>
-					<releases>
-						<enabled>true</enabled>
-					</releases>
-					<snapshots>
-						<enabled>false</enabled>
-					</snapshots>
-				</repository>
-			</repositories>
-			<pluginRepositories>
-				<pluginRepository>
-					<id>com.netradius.archiva</id>
-					<url>http://mirrors.netradius.com/archiva/repository/internal</url>
-					<releases>
-						<enabled>true</enabled>
-					</releases>
-					<snapshots>
-						<enabled>false</enabled>
-					</snapshots>
-				</pluginRepository>
-			</pluginRepositories>
-		</profile>
-	</profiles>
+		<repository>
+			<id>netradius-private-thirdparty</id>
+			<name>NetRadius Third-party Private Repository</name>
+			<url>https://mirrors.netradius.com/nexus/content/repositories/private-thirdparty</url>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>daily</updatePolicy>
+				<checksumPolicy>warn</checksumPolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>netradius-public</id>
+			<name>NetRadius Nexus Managed Public Repository</name>
+			<url>http://mirrors.netradius.com/nexus/content/groups/public</url>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>daily</updatePolicy>
+				<checksumPolicy>warn</checksumPolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
 </project>

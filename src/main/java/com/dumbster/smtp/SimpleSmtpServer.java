@@ -23,7 +23,6 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -35,7 +34,7 @@ public class SimpleSmtpServer implements Runnable {
 	/**
 	 * Stores all of the email received since this instance started up.
 	 */
-	private final List<SmtpMessage> receivedMail;
+	private final ArrayList<SmtpMessage> receivedMail;
 
 	/**
 	 * Default SMTP port is 25.
@@ -65,8 +64,7 @@ public class SimpleSmtpServer implements Runnable {
 	/**
 	 * Constructor.
 	 *
-	 * @param port
-	 *            port number
+	 * @param port port number
 	 */
 	public SimpleSmtpServer(int port) {
 		receivedMail = new ArrayList<SmtpMessage>();
@@ -125,7 +123,7 @@ public class SimpleSmtpServer implements Runnable {
 				socket.close();
 			}
 		} catch (Exception e) {
-			/** @todo Should throw an appropriate exception here. */
+			//TODO Should throw an appropriate exception here.
 			e.printStackTrace();
 		} finally {
 			if (serverSocket != null) {
@@ -237,10 +235,11 @@ public class SimpleSmtpServer implements Runnable {
 	/**
 	 * Get email received by this instance since start up.
 	 *
-	 * @return List of String
+	 * @return list of messages
 	 */
-	public synchronized Iterator<SmtpMessage> getReceivedEmail() {
-		return receivedMail.iterator();
+	@SuppressWarnings("unchecked")
+	public synchronized List<SmtpMessage> getReceivedEmail() {
+		return (List<SmtpMessage>)receivedMail.clone();
 	}
 
 	/**
@@ -250,6 +249,13 @@ public class SimpleSmtpServer implements Runnable {
 	 */
 	public synchronized int getReceivedEmailSize() {
 		return receivedMail.size();
+	}
+
+	/**
+	 * Clears the received email.
+	 */
+	public synchronized void clear() {
+		receivedMail.clear();
 	}
 
 	/**
@@ -265,8 +271,7 @@ public class SimpleSmtpServer implements Runnable {
 	/**
 	 * Creates an instance of SimpleSmtpServer and starts it.
 	 *
-	 * @param port
-	 *            port number the server should listen to
+	 * @param port port number the server should listen to
 	 * @return a reference to the SMTP server
 	 */
 	public static SimpleSmtpServer start(int port) {

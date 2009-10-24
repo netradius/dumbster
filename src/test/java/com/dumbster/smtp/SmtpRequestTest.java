@@ -17,10 +17,13 @@
 
 package com.dumbster.smtp;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertTrue;
 
-public class SmtpRequestTest extends TestCase {
+import org.junit.Test;
 
+public class SmtpRequestTest {
+
+	@Test
 	public void testUnrecognizedCommandConnectState() {
 		SmtpRequest request = new SmtpRequest(SmtpActionType.UNRECOG, null,
 				SmtpState.CONNECT);
@@ -28,6 +31,7 @@ public class SmtpRequestTest extends TestCase {
 		assertTrue(response.getCode() == 500);
 	}
 
+	@Test
 	public void testUnrecognizedCommandGreetState() {
 		SmtpRequest request = new SmtpRequest(SmtpActionType.UNRECOG, null,
 				SmtpState.GREET);
@@ -35,6 +39,7 @@ public class SmtpRequestTest extends TestCase {
 		assertTrue(response.getCode() == 500);
 	}
 
+	@Test
 	public void testUnrecognizedCommandMailState() {
 		SmtpRequest request = new SmtpRequest(SmtpActionType.UNRECOG, null,
 				SmtpState.MAIL);
@@ -42,6 +47,7 @@ public class SmtpRequestTest extends TestCase {
 		assertTrue(response.getCode() == 500);
 	}
 
+	@Test
 	public void testUnrecognizedCommandQuitState() {
 		SmtpRequest request = new SmtpRequest(SmtpActionType.UNRECOG, null,
 				SmtpState.QUIT);
@@ -49,6 +55,7 @@ public class SmtpRequestTest extends TestCase {
 		assertTrue(response.getCode() == 500);
 	}
 
+	@Test
 	public void testUnrecognizedCommandRcptState() {
 		SmtpRequest request = new SmtpRequest(SmtpActionType.UNRECOG, null,
 				SmtpState.RCPT);
@@ -56,6 +63,7 @@ public class SmtpRequestTest extends TestCase {
 		assertTrue(response.getCode() == 500);
 	}
 
+	@Test
 	public void testUnrecognizedCommandDataBodyState() {
 		SmtpRequest request = new SmtpRequest(SmtpActionType.UNRECOG, null,
 				SmtpState.DATA_BODY);
@@ -63,6 +71,7 @@ public class SmtpRequestTest extends TestCase {
 		assertTrue(response.getCode() == -1);
 	}
 
+	@Test
 	public void testUnrecognizedCommandDataHdrState() {
 		SmtpRequest request = new SmtpRequest(SmtpActionType.UNRECOG, null,
 				SmtpState.DATA_HDR);

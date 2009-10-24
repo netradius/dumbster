@@ -95,8 +95,7 @@ public class SmtpActionType {
 	/**
 	 * Create a new SMTP action type. Private to ensure no invalid values.
 	 *
-	 * @param value
-	 *            one of the _BYTE values
+	 * @param value one of the _BYTE values
 	 */
 	private SmtpActionType(byte value) {
 		this.value = value;

@@ -17,50 +17,52 @@
 
 package com.dumbster.smtp;
 
-import static com.dumbster.smtp.AllTests.SMTP_PORT;
-import junit.framework.TestCase;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * @author JeremyH
  */
-public class BindProblemTest extends TestCase {
+public class BindProblemTest {
+
+	public static final int SMTP_PORT = 9999;
 
 	private SimpleSmtpServer server;
 
-	/**
-	 * @see junit.framework.TestCase#setUp()
-	 */
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
+	@Before
+	public void setUp() {
 		server = SimpleSmtpServer.start(SMTP_PORT);
 	}
 
-	/**
-	 * @see junit.framework.TestCase#tearDown()
-	 */
-	@Override
-	protected void tearDown() throws Exception {
+	@After
+	public void tearDown() {
 		server.stop();
-		super.tearDown();
 	}
 
+	@Test
 	public void test1() {
 		assertTrue(true);
 	}
 
+	@Test
 	public void test2() {
 		assertTrue(true);
 	}
 
+	@Test
 	public void test3() {
 		assertTrue(true);
 	}
 
+	@Test
 	public void test4() {
 		assertTrue(true);
 	}
 
+	@Test
 	public void test5() {
 		assertTrue(true);
 	}
