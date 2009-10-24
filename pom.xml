@@ -6,7 +6,7 @@
 	<groupId>dumbster</groupId>
 	<artifactId>nr-dumbster</artifactId>
 	<packaging>jar</packaging>
-	<version>1.7-SNAPSHOT</version>
+	<version>1.7</version>
 	<name>dumbster</name>
 	<url>http://www.netradius.om/oss/dumbster</url>
 	<description>NetRadius Dumbster Fork</description>
@@ -42,6 +42,18 @@
 			</plugin>
 		</plugins>
 	</build>
+	<distributionManagement>
+		<repository>
+			<id>netradius-releases</id>
+			<name>NetRadius Release Repository</name>
+			<url>https://mirrors.netradius.com/nexus/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>netradius-snapshots</id>
+			<name>NetRadius Snapshots Repository</name>
+			<url>https://mirrors.netradius.com/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement> 
 	<repositories>
 		<repository>
 			<id>netradius-public</id>
