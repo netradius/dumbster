@@ -7,7 +7,7 @@
     <groupId>dumbster</groupId>
     <artifactId>nr-dumbster</artifactId>
     <packaging>jar</packaging>
-    <version>1.7</version>
+    <version>1.8-SNAPSHOT</version>
     <name>dumbster</name>
     <url>http://www.netradius.om/oss/dumbster</url>
     <description>NetRadius Dumbster Fork</description>
