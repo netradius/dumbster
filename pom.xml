@@ -7,7 +7,7 @@
     <groupId>com.netradius</groupId>
     <artifactId>dumbster</artifactId>
     <packaging>jar</packaging>
-    <version>1.8-SNAPSHOT</version>
+    <version>1.8</version>
     <name>dumbster</name>
     <url>https://github.com/netradius/dumbster</url>
     <description>NetRadius Dumbster Fork</description>
